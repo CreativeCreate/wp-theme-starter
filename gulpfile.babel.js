@@ -209,7 +209,7 @@ gulp.task( 'vendorsJS', () => {
 				// config.jsVendorFolder+'jquery.js',
 				config.jsVendorFolder+'jquery-form-validate.js',
 				config.jsVendorFolder+'popper.js',
-				config.jsVendorFolder+'bootstrap.js'
+				config.jsVendorFolder+'bootstrap.js',
 			], { since: gulp.lastRun( 'vendorsJS' ) }) // Only run on changed files.
 		.pipe( plumber( errorHandler ) )
 		.pipe(
@@ -253,7 +253,12 @@ gulp.task( 'vendorsJS', () => {
  */
 gulp.task( 'customJS', () => {
 	return gulp
-		.src( config.jsCustomSRC, { since: gulp.lastRun( 'customJS' ) }) // Only run on changed files.
+		.src( [			
+			config.jsSRC+'navigation.js',
+			config.jsSRC+'skip-link-focus-fix.js',
+			config.jsSRC+'customizer.js',
+			config.jsCustomSRC,
+		], { since: gulp.lastRun( 'customJS' ) }) // Only run on changed files.
 		.pipe( plumber( errorHandler ) )
 		.pipe(
 			babel({
